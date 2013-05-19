@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/bin">
+        <file>cgminer.conf</file>
+    </qresource>
+</RCC>
