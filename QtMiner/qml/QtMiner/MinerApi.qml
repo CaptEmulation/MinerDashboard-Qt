@@ -5,7 +5,8 @@ Item {
     id: root
 
     property string response;
-
+    property string host: "localhost"
+    property int port: 4028
     function tellMiner(command, parameter) {
         var request = { command: command };
         if (parameter) {
@@ -19,7 +20,8 @@ Item {
 
     TcpSocket {
         id: socket
-        port: 4028
+        port: root.port
+        hostname: root.host
 
         onReadyToReadResponse: {
             root.response = socket.response();

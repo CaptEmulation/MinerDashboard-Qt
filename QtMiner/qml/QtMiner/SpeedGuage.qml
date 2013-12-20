@@ -4,16 +4,17 @@ import QtQuick 2.0
 
 Rectangle {
     property int max: 11
+    property int min: 0
     property int value: 0
     property string unitText
     property real textScale: 1.0
     property int fontPixelSize: width / 15
 
     onMaxChanged: {
-        var step = max / 10;
+        var step = (max - min) / 10;
         var valuesArray = values.getAllLabels();
         for (var i = 0; i < valuesArray.length; i++) {
-            valuesArray[i].text = Math.round(i * step);
+            valuesArray[i].text = min + Math.round(i * step);
         }
 
     }
@@ -47,7 +48,7 @@ Rectangle {
             anchors.fill: parent
             transform: Rotation {
                 id: rot
-                angle: -150 + (value / max) * 300
+                angle: -150 + ((value - min) / (max - min)) * 300
                 origin.x: pin.width / 2
                 origin.y: pin.height * 0.9
                 Behavior on angle {
